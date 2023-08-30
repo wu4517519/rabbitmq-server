@@ -76,7 +76,7 @@
          set_ram_duration_target/2, set_maximum_since_use/2,
          emit_consumers_local/3, internal_delete/3]).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include_lib("stdlib/include/qlc.hrl").
 -include("amqqueue.hrl").
 

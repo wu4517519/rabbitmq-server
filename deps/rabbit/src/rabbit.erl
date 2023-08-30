@@ -270,7 +270,7 @@
 %%---------------------------------------------------------------------------
 
 -include_lib("rabbit_common/include/rabbit_framing.hrl").
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 -define(APPS, [os_mon, mnesia, rabbit_common, rabbitmq_prelaunch, ra, sysmon_handler, rabbit, osiris]).
 

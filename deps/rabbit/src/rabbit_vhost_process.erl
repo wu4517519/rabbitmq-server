@@ -21,7 +21,7 @@
 
 -module(rabbit_vhost_process).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 -define(VHOST_CHECK_INTERVAL, 5000).
 

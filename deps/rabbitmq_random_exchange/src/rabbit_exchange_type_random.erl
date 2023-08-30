@@ -7,7 +7,7 @@
 
 -module(rabbit_exchange_type_random).
 -behaviour(rabbit_exchange_type).
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 -rabbit_boot_step({?MODULE, [
   {description,   "exchange type random"},

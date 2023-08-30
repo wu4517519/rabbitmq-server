@@ -7,7 +7,7 @@
 
 -module(rabbit_mgmt_load_definitions).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 -export([boot/0, maybe_load_definitions/0, maybe_load_definitions_from/2]).
 

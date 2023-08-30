@@ -33,7 +33,7 @@
          query_single_active_consumer/1
          ]).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 -define(SOFT_LIMIT, 32).
 -define(TIMER_TIME, 10000).

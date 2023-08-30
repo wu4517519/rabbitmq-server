@@ -8,7 +8,7 @@
 -module(rabbit_channel_interceptor).
 
 -include_lib("rabbit_common/include/rabbit_framing.hrl").
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 -export([init/1, intercept_in/3]).
 

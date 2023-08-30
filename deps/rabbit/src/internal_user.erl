@@ -7,7 +7,7 @@
 
 -module(internal_user).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 -export([
   new/0,

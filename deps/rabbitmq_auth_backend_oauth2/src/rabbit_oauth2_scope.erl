@@ -9,7 +9,7 @@
 
 -export([vhost_access/2, resource_access/3, topic_access/4, concat_scopes/2]).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 -type permission() :: read | write | configure.
 

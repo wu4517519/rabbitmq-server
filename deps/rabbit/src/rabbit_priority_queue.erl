@@ -7,7 +7,7 @@
 
 -module(rabbit_priority_queue).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include_lib("rabbit_common/include/rabbit_framing.hrl").
 -include("amqqueue.hrl").
 

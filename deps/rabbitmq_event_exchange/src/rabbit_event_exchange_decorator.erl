@@ -7,7 +7,7 @@
 
 -module(rabbit_event_exchange_decorator).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include("rabbit_event_exchange.hrl").
 
 -rabbit_boot_step({?MODULE,

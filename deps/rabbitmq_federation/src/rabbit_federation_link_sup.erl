@@ -9,7 +9,7 @@
 
 -behaviour(supervisor2).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include_lib("rabbit/include/amqqueue.hrl").
 -include("rabbit_federation.hrl").
 

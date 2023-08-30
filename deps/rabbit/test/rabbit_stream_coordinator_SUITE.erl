@@ -7,7 +7,7 @@
          ]).
 
 -include_lib("eunit/include/eunit.hrl").
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include_lib("rabbit/src/rabbit_stream_coordinator.hrl").
 
 -define(STATE, rabbit_stream_coordinator).

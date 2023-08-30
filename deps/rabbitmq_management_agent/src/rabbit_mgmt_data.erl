@@ -9,7 +9,7 @@
 
 -include("rabbit_mgmt_records.hrl").
 -include("rabbit_mgmt_metrics.hrl").
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include_lib("rabbit_common/include/rabbit_core_metrics.hrl").
 
 -export([empty/2, pick_range/2]).

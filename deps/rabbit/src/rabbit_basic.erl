@@ -6,7 +6,7 @@
 %%
 
 -module(rabbit_basic).
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include_lib("rabbit_common/include/rabbit_framing.hrl").
 
 -export([publish/4, publish/5, publish/1,

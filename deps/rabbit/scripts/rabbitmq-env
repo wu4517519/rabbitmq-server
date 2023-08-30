@@ -176,6 +176,7 @@ _rmq_env_set_erl_libs()
     fi
 }
 
+#执行escript 中start函数启动erlang结点
 run_escript()
 {
     escript_main="${1:?escript_main must be defined}"

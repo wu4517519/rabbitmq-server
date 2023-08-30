@@ -12,7 +12,7 @@
 -export([init/1]).
 -export([start_link/0, start_child/0]).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include("rabbit_mgmt.hrl").
 
 start_child() ->

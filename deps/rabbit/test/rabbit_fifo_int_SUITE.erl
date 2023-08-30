@@ -7,7 +7,7 @@
 
 -include_lib("common_test/include/ct.hrl").
 -include_lib("eunit/include/eunit.hrl").
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 -define(RA_EVENT_TIMEOUT, 5000).
 -define(RA_SYSTEM, quorum_queues).

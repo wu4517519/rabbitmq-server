@@ -6,7 +6,7 @@
 %%
 
 -module(rabbit_amqqueue_process).
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include_lib("rabbit_common/include/rabbit_framing.hrl").
 -include("amqqueue.hrl").
 

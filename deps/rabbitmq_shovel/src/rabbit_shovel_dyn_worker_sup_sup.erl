@@ -14,7 +14,7 @@
 -import(rabbit_data_coercion, [to_map/1, to_list/1]).
 
 -include("rabbit_shovel.hrl").
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -define(SUPERVISOR, ?MODULE).
 
 start_link() ->

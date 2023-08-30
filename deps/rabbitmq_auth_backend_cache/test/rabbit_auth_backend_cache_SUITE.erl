@@ -6,7 +6,7 @@
 %%
 -module(rabbit_auth_backend_cache_SUITE).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 -compile(export_all).
 

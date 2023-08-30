@@ -28,7 +28,7 @@
                            ip_address_to_binary/1]).
 
 -include_lib("kernel/include/logger.hrl").
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include_lib("rabbit_common/include/rabbit_framing.hrl").
 -include_lib("rabbit/include/amqqueue.hrl").
 -include("rabbit_mqtt.hrl").

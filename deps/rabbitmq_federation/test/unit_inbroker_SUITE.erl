@@ -8,7 +8,7 @@
 -module(unit_inbroker_SUITE).
 
 -include_lib("common_test/include/ct.hrl").
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include_lib("eunit/include/eunit.hrl").
 
 -include("rabbit_federation.hrl").

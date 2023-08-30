@@ -10,7 +10,7 @@
 -export([plugin_info/0]).
 -export([attributes/1, sheet_header/0, sheet_body/1]).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 plugin_info() ->
     #{

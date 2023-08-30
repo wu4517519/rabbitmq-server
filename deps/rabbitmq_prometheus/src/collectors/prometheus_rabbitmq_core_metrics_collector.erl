@@ -17,7 +17,7 @@
                                    untyped_metric/2]).
 
 -include_lib("prometheus/include/prometheus.hrl").
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 -behaviour(prometheus_collector).
 %% We prepend either rabbitmq_ or rabbitmq_detailed_ to all metrics emitted by this collector.

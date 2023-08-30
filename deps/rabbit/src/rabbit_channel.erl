@@ -37,7 +37,7 @@
 %% will notify queue collector of that queue.
 
 -include_lib("rabbit_common/include/rabbit_framing.hrl").
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include_lib("rabbit_common/include/rabbit_misc.hrl").
 
 -include("amqqueue.hrl").

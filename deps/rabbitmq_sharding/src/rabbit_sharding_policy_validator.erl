@@ -9,7 +9,7 @@
 
 -behaviour(rabbit_policy_validator).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 -export([register/0, validate_policy/1]).
 

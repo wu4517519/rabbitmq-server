@@ -6,7 +6,7 @@
 %% -----------------------------------------------------------------------------
 -module(rabbit_db_jms_exchange).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include("rabbit_jms_topic_exchange.hrl").
 
 -export([

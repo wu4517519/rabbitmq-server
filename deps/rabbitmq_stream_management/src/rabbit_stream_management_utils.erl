@@ -11,7 +11,7 @@
          keep_tracked_stream_connections/1,
          is_stream_connection/1]).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 keep_stream_connections(Connections) ->
     lists:filter(fun is_stream_connection/1, Connections).

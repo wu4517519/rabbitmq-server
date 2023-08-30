@@ -9,7 +9,7 @@
 
 -behaviour(mirrored_supervisor).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include_lib("rabbit/include/amqqueue.hrl").
 -define(SUPERVISOR, ?MODULE).
 

@@ -8,7 +8,7 @@
 %% A mock authn/authz that records information during calls. For testing purposes only.
 
 -module(rabbit_auth_backend_mqtt_mock).
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 -behaviour(rabbit_authn_backend).
 -behaviour(rabbit_authz_backend).

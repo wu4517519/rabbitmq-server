@@ -10,7 +10,7 @@
                 detailed_i,
                 global_i}).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 -spec start_link(atom()) -> rabbit_types:ok_pid_or_error().
 

@@ -6,7 +6,7 @@
 
 -module(rabbit_exchange_type_recent_history).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include_lib("rabbit_common/include/rabbit_framing.hrl").
 -include("rabbit_recent_history.hrl").
 

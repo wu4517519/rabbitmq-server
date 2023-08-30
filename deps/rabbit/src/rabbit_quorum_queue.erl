@@ -76,7 +76,7 @@
                                  qname_to_internal_name/1]).
 
 -include_lib("stdlib/include/qlc.hrl").
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include_lib("rabbit_common/include/rabbit_framing.hrl").
 -include("amqqueue.hrl").
 

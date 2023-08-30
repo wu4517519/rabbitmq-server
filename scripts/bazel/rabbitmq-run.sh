@@ -40,6 +40,7 @@ write_config_file() {
         rabbitmq_stream_fragment="{tcp_listeners, [$((5552 + $RABBITMQ_NODE_PORT - 5672))]}"
         rabbitmq_prometheus_fragment="{tcp_config, [{port, $((15692 + $RABBITMQ_NODE_PORT - 5672))}]}"
     fi
+#    将配置变量写入到config文件中，供后续使用
     cat << EOF > "$RABBITMQ_CONFIG_FILE"
 %% vim:ft=erlang:
 
@@ -86,6 +87,7 @@ write_config_file() {
 EOF
 }
 
+#设置结点环境变量，并创建必要文件夹
 setup_node_env() {
     local node_index=""
     if [ -n "${1-}" ]; then
@@ -121,6 +123,7 @@ setup_node_env() {
         RABBITMQ_FEATURE_FLAGS_FILE \
         RABBITMQ_ENABLED_PLUGINS_FILE
 
+    # 创建所需目录
     mkdir -p "$TEST_TMPDIR"
     mkdir -p "$RABBITMQ_LOG_BASE"
     mkdir -p "$RABBITMQ_MNESIA_BASE"
@@ -186,6 +189,7 @@ for arg in "$@"; do
 done
 
 # shellcheck disable=SC1083
+# 构建rabbitmq默认插件路径，以冒号分隔
 DEFAULT_PLUGINS_DIR=${BASE_DIR}/{RABBITMQ_HOME}/plugins
 if [[ -n ${EXTRA_PLUGINS_DIR+x} ]]; then
     DEFAULT_PLUGINS_DIR=${DEFAULT_PLUGINS_DIR}:${EXTRA_PLUGINS_DIR}
@@ -193,6 +197,7 @@ fi
 
 RABBITMQ_PLUGINS_DIR=${RABBITMQ_PLUGINS_DIR:=${DEFAULT_PLUGINS_DIR}}
 export RABBITMQ_PLUGINS_DIR
+#rabbitmq_server的启动参数
 RABBITMQ_SERVER_START_ARGS="${RABBITMQ_SERVER_START_ARGS:=-ra wal_sync_method sync}"
 export RABBITMQ_SERVER_START_ARGS
 
@@ -208,7 +213,7 @@ else
 fi
 export RABBITMQ_ENABLED_PLUGINS
 
-
+# 测试创建临时目录
 TEST_TMPDIR=${TEST_TMPDIR:=$(dirname "$(mktemp -u)")/rabbitmq-test-instances}
 printf "RabbitMQ node(s) in directory $GREEN$(realpath "$TEST_TMPDIR")$NO_COLOR\n"
 
@@ -224,6 +229,7 @@ HOSTNAME="$(hostname -s)"
 
 case $CMD in
     run-broker)
+#        前台启动broker
         setup_node_env
         export RABBITMQ_ALLOW_INPUT=true
         if [ -z ${RABBITMQ_CONFIG_FILE+x} ]; then

@@ -6,7 +6,7 @@
 %%
 
 -module(rabbit_amqp1_0_writer).
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include_lib("rabbit_common/include/rabbit_framing.hrl").
 -include("rabbit_amqp1_0.hrl").
 

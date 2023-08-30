@@ -6,7 +6,7 @@
 %%
 
 -module(rabbit_exchange).
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 -export([recover/1, policy_changed/2, callback/4, declare/7,
          assert_equivalence/6, assert_args_equivalence/2, check_type/1, exists/1,

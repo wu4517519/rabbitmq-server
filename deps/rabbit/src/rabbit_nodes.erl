@@ -36,7 +36,7 @@
 -deprecated({all_running, 0, "Use rabbit_nodes:list_running/0 instead"}).
 
 -include_lib("kernel/include/inet.hrl").
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 -define(SAMPLING_INTERVAL, 1000).
 -define(FILTER_RPC_TIMEOUT, 10000).

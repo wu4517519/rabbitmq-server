@@ -2,7 +2,7 @@
 
 -compile({no_auto_import, [size/1]}).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 -export([init/0,
          insert/4,

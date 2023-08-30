@@ -4,7 +4,7 @@
 -include_lib("kernel/include/logger.hrl").
 -include_lib("stdlib/include/zip.hrl").
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include_lib("rabbit_common/include/logging.hrl").
 
 -export([setup/1,

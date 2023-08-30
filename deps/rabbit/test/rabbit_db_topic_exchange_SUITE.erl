@@ -7,7 +7,7 @@
 
 -module(rabbit_db_topic_exchange_SUITE).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include_lib("eunit/include/eunit.hrl").
 
 -compile([nowarn_export_all, export_all]).

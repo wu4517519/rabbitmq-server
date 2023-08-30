@@ -12,7 +12,7 @@
 
 -import(rabbit_misc, [pget/3]).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include("rabbit_shovel.hrl").
 -define(SUPERVISOR, ?MODULE).
 

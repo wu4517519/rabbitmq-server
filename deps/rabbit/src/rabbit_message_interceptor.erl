@@ -12,7 +12,7 @@
 
 -export([intercept/1]).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include_lib("rabbit_common/include/rabbit_framing.hrl").
 
 -define(HEADER_TIMESTAMP, <<"timestamp_in_ms">>).

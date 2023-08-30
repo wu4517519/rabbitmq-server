@@ -16,7 +16,7 @@
 -dialyzer(no_improper_lists).
 
 -include("rabbit_fifo.hrl").
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 -export([
          %% ra_machine callbacks

@@ -19,7 +19,7 @@
 -export([definitions/0]).
 
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 %%----------------------------------------------------------------------------
 

@@ -7,7 +7,7 @@
 
 -module(rabbit_top_util).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 -export([toplist/3, fmt_all/1, fmt/1, obtain_name/1, safe_process_info/2]).
 -export([sort_by_param/2, sort_order_param/1, row_count_param/2]).

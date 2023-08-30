@@ -4,7 +4,7 @@
 -compile(export_all).
 
 -include_lib("eunit/include/eunit.hrl").
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 
 %%%===================================================================
 %%% Common Test callbacks

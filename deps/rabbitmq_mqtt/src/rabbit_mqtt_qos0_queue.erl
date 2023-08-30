@@ -19,7 +19,7 @@
 -module(rabbit_mqtt_qos0_queue).
 -behaviour(rabbit_queue_type).
 
--include_lib("rabbit_common/include/rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit.hrl").
 -include_lib("rabbit/include/amqqueue.hrl").
 
 %% Stateless rabbit_queue_type callbacks.
