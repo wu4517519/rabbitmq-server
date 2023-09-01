@@ -86,6 +86,7 @@ RABBITMQ_HOME="$(rmq_realpath "${RABBITMQ_SCRIPTS_DIR}/..")"
 ESCRIPT_DIR="${RABBITMQ_HOME}/escript"
 
 ## Set defaults
+# 导入并执行 rabbitmq-defaults 脚本
 . ${RABBITMQ_SCRIPTS_DIR}/rabbitmq-defaults
 
 # We save the current value of $RABBITMQ_PID_FILE in case it was set by
@@ -97,6 +98,7 @@ saved_RABBITMQ_PID_FILE="$RABBITMQ_PID_FILE"
 [ "x" = "x$RABBITMQ_CONF_ENV_FILE" ] && RABBITMQ_CONF_ENV_FILE="$CONF_ENV_FILE"
 if [ -f "$RABBITMQ_CONF_ENV_FILE" ]; then
     CONF_ENV_FILE_PHASE=rabbitmq-env
+#    导入并执行 rabbitmq-env 脚本
     . "$RABBITMQ_CONF_ENV_FILE" || true
 fi
 

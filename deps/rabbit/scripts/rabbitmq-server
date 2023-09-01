@@ -12,6 +12,7 @@ set -e
 # Get default settings with user overrides for (RABBITMQ_)<var_name>
 # Non-empty defaults should be set in rabbitmq-env
 SCRIPTS_DIR=$(dirname "$0")
+#导入环境变量脚本 rabbitmq-env
 . "$SCRIPTS_DIR/rabbitmq-env"
 
 [ "$NOTIFY_SOCKET" ] && RUNNING_UNDER_SYSTEMD=true
