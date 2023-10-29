@@ -9,7 +9,7 @@
 
 -include_lib("kernel/include/logger.hrl").
 
--include_lib("rabbit_common/include/logging.hrl").
+-include_lib("../../rabbit_common/include/logging.hrl").
 
 -export([setup/1]).
 

@@ -40,8 +40,8 @@
 %%
 %% Reader processes are special processes (in the OTP sense).
 
--include_lib("rabbit_common/include/rabbit_framing.hrl").
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit_framing.hrl").
+-include_lib("rabbit.hrl").
 
 -export([start_link/2, info_keys/0, info/1, info/2, force_event_refresh/2,
          shutdown/2]).
@@ -210,6 +210,8 @@ force_event_refresh(Pid, Ref) ->
                          rabbit_alarm:resource_alarm_source(),
                          rabbit_alarm:resource_alert()) -> 'ok'.
 
+
+%% {_, Conserve, _} = {Pid, Source, Alert}
 conserve_resources(Pid, Source, {_, Conserve, _}) ->
     Pid ! {conserve_resources, Source, Conserve},
     ok.
@@ -454,6 +456,10 @@ run({M, F, A}) ->
     catch {become, MFA} -> run(MFA)
     end.
 
+
+%% BufLen 累计接收来自socket的数据字节长度
+%% Buf socket数据缓冲区
+%% RecvLen 目标接收字节长度
 recvloop(Deb, Buf, BufLen, State = #v1{pending_recv = true}) ->
     mainloop(Deb, Buf, BufLen, State);
 recvloop(Deb, Buf, BufLen, State = #v1{connection_state = blocked}) ->
@@ -462,6 +468,7 @@ recvloop(Deb, Buf, BufLen, State = #v1{connection_state = {become, F}}) ->
     throw({become, F(Deb, Buf, BufLen, State)});
 recvloop(Deb, Buf, BufLen, State = #v1{sock = Sock, recv_len = RecvLen})
   when BufLen < RecvLen ->
+  %% 等待接收socket数据
     case rabbit_net:setopts(Sock, [{active, once}]) of
         ok              -> mainloop(Deb, Buf, BufLen,
                                     State#v1{pending_recv = true});
@@ -471,14 +478,18 @@ recvloop(Deb, [B], _BufLen, State) ->
     {Rest, State1} = handle_input(State#v1.callback, B, State),
     recvloop(Deb, [Rest], size(Rest), State1);
 recvloop(Deb, Buf, BufLen, State = #v1{recv_len = RecvLen}) ->
+    %% Buf 是通过头插法构建的，所以通过 binlist_split 来反向遍历逐步找到需要划分的字节，解决粘包情况
+    %% 存在以下2种情况：
+    %%  1) BufLen = RecvLen，缓冲区数据长度恰好匹配 RecvLen，则取值为0，可以直接使用
+    %%  2) BufLen > RecvLen，缓冲区数据有富余 BufLen - RecvLen 意味着多出的字节数，供后续比对找到需要划分的字节
     {DataLRev, RestLRev} = binlist_split(BufLen - RecvLen, Buf, []),
     Data = list_to_binary(lists:reverse(DataLRev)),
     {<<>>, State1} = handle_input(State#v1.callback, Data, State),
     recvloop(Deb, lists:reverse(RestLRev), BufLen - RecvLen, State1).
 
-binlist_split(0, L, Acc) ->
+binlist_split(0, L, Acc) -> %% 所需数据刚好与缓冲区匹配
     {L, Acc};
-binlist_split(Len, L, [Acc0|Acc]) when Len < 0 ->
+binlist_split(Len, L, [Acc0|Acc]) when Len < 0 -> %% 缓冲区数据不足
     {H, T} = split_binary(Acc0, -Len),
     {[H|L], [T|Acc]};
 binlist_split(Len, [H|T], Acc) ->
@@ -1026,7 +1037,7 @@ handle_input(frame_header, <<Type:8,Channel:16,PayloadSize:32, _/binary>>,
       Type, Channel, <<>>, State);
 handle_input(frame_header, <<Type:8,Channel:16,PayloadSize:32,
                              Payload:PayloadSize/binary, ?FRAME_END,
-                             Rest/binary>>,
+                             Rest/binary>>, %% 一个头部帧能装载完帧体的情况
              State) ->
     {Rest, ensure_stats_timer(handle_frame(Type, Channel, Payload, State))};
 handle_input(frame_header, <<Type:8,Channel:16,PayloadSize:32, Rest/binary>>,
@@ -1035,7 +1046,7 @@ handle_input(frame_header, <<Type:8,Channel:16,PayloadSize:32, Rest/binary>>,
              switch_callback(State,
                              {frame_payload, Type, Channel, PayloadSize},
                              PayloadSize + 1))};
-handle_input({frame_payload, Type, Channel, PayloadSize}, Data, State) ->
+handle_input({frame_payload, Type, Channel, PayloadSize}, Data, State) -> %% 开始接收帧内容体
     <<Payload:PayloadSize/binary, EndMarker, Rest/binary>> = Data,
     case EndMarker of
         ?FRAME_END -> State1 = handle_frame(Type, Channel, Payload, State),
@@ -1090,6 +1101,7 @@ handshake(Vsn, #v1{sock = Sock}) ->
 start_connection({ProtocolMajor, ProtocolMinor, _ProtocolRevision},
                  Protocol,
                  State = #v1{sock = Sock, connection = Connection}) ->
+  %% Protocol = rabbit_framing_amqp_0_9_1
     rabbit_networking:register_connection(self()),
     Start = #'connection.start'{
       version_major = ProtocolMajor,
@@ -1592,6 +1604,7 @@ maybe_emit_stats(State) ->
     rabbit_event:if_enabled(State, #v1.stats_timer,
                             fun() -> emit_stats(State) end).
 
+%% 释放统计信息，并进入下一统计周期
 emit_stats(State) ->
     [{_, Pid},
      {_, Recv_oct},

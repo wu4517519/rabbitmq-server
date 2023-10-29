@@ -7,7 +7,7 @@
 
 -module(rabbit_mqtt_util).
 
--include_lib("rabbit_common/include/resource.hrl").
+-include_lib("../../rabbit_common/include/resource.hrl").
 -include("rabbit_mqtt.hrl").
 -include("rabbit_mqtt_packet.hrl").
 

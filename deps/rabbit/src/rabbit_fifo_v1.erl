@@ -14,7 +14,7 @@
 -compile({no_auto_import, [apply/3]}).
 
 -include("rabbit_fifo_v1.hrl").
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -export([
          init/1,

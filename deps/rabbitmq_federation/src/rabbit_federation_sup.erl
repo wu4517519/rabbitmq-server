@@ -11,7 +11,7 @@
 
 %% Supervises everything. There is just one of these.
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -define(SUPERVISOR, rabbit_federation_sup).
 

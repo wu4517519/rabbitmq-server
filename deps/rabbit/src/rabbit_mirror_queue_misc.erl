@@ -34,7 +34,7 @@
 %% for testing only
 -export([module/1]).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -define(HA_NODES_MODULE, rabbit_mirror_queue_mode_nodes).
 

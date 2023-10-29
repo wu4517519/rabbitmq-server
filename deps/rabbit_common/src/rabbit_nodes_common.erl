@@ -84,6 +84,7 @@ make(NodeStr)          -> make(parts(NodeStr)).
 
 make(Prefix, Suffix) -> make({Prefix, Suffix}).
 
+%% 将节点字符串按@分割成两部分
 parts(Node) when is_atom(Node) ->
     parts(atom_to_list(Node));
 parts(NodeStr) ->

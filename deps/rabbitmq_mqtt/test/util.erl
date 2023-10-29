@@ -1,7 +1,7 @@
 -module(util).
 
 -include("rabbit_mqtt.hrl").
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 -include_lib("common_test/include/ct.hrl").
 -include_lib("eunit/include/eunit.hrl").
 

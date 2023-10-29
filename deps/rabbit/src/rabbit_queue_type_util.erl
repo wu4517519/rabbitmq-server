@@ -14,7 +14,7 @@
          check_non_durable/1,
          run_checks/2]).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 -include("amqqueue.hrl").
 
 args_policy_lookup(Name, Resolve, Q) when ?is_amqqueue(Q) ->

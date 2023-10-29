@@ -2,8 +2,8 @@
 
 -behaviour(rabbit_channel_interceptor).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
--include_lib("rabbit_common/include/rabbit_framing.hrl").
+-include_lib("rabbit.hrl").
+-include_lib("rabbit_framing.hrl").
 
 
 -compile(export_all).

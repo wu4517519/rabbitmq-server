@@ -97,7 +97,7 @@
 -module(rabbit_prelaunch_logging).
 
 -include_lib("kernel/include/logger.hrl").
--include_lib("rabbit_common/include/logging.hrl").
+-include_lib("../../rabbit_common/include/logging.hrl").
 
 -export([setup/1,
          set_log_level/1,
@@ -504,6 +504,7 @@ configure_logger(Context) ->
     %% Configure main handlers.
     %% We distinguish them by their type and possibly other
     %% parameters (file name, syslog settings, etc.).
+%%    配置主日志 handler
     LogConfig0 = get_log_configuration_from_app_env(),
     LogConfig1 = handle_default_and_overridden_outputs(LogConfig0, Context),
     LogConfig2 = apply_log_levels_from_env(LogConfig1, Context),
@@ -583,6 +584,7 @@ extract_file_rotation_spec(Defaults) ->
 -spec normalize_main_log_config(main_log_env(), default_cat_env(), file_rotation_spec()) ->
     global_log_config().
 
+%% 主日志配置标准化
 normalize_main_log_config(Props, DefaultProps, DefaultFileSpec) ->
     Outputs = case proplists:get_value(level, DefaultProps) of
                   undefined -> #{outputs => []};
@@ -623,6 +625,7 @@ compute_implicitly_enabled_output(Props) ->
             end
     end.
 
+%% 判断属性是否开启
 compute_implicitly_enabled_output(PropName, Props) ->
     SubProps = proplists:get_value(PropName, Props, []),
     {Enabled, SubProps1} = compute_implicitly_enabled_output1(SubProps),
@@ -633,6 +636,7 @@ compute_implicitly_enabled_output1(SubProps) ->
     %% We consider the output enabled or disabled if:
     %%     * it is explicitely marked as such, or
     %%     * the level is set to a log level (enabled) or `none' (disabled)
+%%    显示指定level的属性被视为开启，否则未开启
     Enabled = proplists:get_value(
                 enabled, SubProps,
                 proplists:get_value(level, SubProps, none) =/= none),
@@ -994,6 +998,7 @@ handle_default_and_overridden_outputs(LogConfig, Context) ->
 handle_default_main_output(
   #{global := #{outputs := Outputs} = GlobalConfig} = LogConfig,
   #{main_log_file := MainLogFile} = Context) ->
+    %% 是否未配置日志输出
     NoOutputsConfigured = Outputs =:= [],
     Overridden = rabbit_env:has_var_been_overridden(Context, main_log_file),
     Outputs1 = if
@@ -1108,6 +1113,7 @@ apply_log_levels_from_env(LogConfig, #{log_levels := LogLevels})
               GlobalConfig1 = GlobalConfig#{level => Level},
               LC#{global => GlobalConfig1};
           (CatString, Level, #{per_category := PerCatConfig} = LC) ->
+              %% 支持不同项设置不同日志级别
               CatAtom = list_to_atom(CatString),
               CatConfig0 = maps:get(CatAtom, PerCatConfig, #{outputs => []}),
               CatConfig1 = CatConfig0#{level => Level},
@@ -1228,6 +1234,7 @@ create_global_handlers_conf(#{outputs := Outputs} = GlobalConfig) ->
 add_erlang_specific_filters(#{filters := Filters} = Handler) ->
     %% We only log progress reports (from application master and supervisor)
     %% only if the handler level is set to debug.
+    %% 只记录来自主应用和主监督者的日志信息
     Action = case Handler of
                  #{level := debug} -> log;
                  _                 -> stop
@@ -1569,6 +1576,7 @@ adjust_running_dependencies(Handlers) ->
     %% stopped.
     %%
     %% DefaultDeps is of the form `#{ApplicationName => Needed}'.
+    %% 日志护理程序默认依赖的应用
     DefaultDeps = #{syslog => false},
     Deps = lists:foldl(
              fun

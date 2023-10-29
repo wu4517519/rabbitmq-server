@@ -11,7 +11,7 @@
 -export([start_link/2, init/1]).
 
 -include("rabbit_shovel.hrl").
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 start_link(ShovelName, ShovelConfig) ->
     mirrored_supervisor:start_link({local, ShovelName}, ShovelName,

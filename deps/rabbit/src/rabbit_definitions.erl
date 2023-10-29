@@ -29,7 +29,7 @@
 %%  * rabbit_definitions_import_http
 %%  * rabbit_definitions_hashing
 -module(rabbit_definitions).
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -export([boot/0]).
 %% automatic import on boot

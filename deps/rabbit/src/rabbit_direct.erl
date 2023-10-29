@@ -18,8 +18,8 @@
 %% For testing only
 -export([extract_extra_auth_props/4]).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
--include_lib("rabbit_common/include/rabbit_misc.hrl").
+-include_lib("rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit_misc.hrl").
 
 %%----------------------------------------------------------------------------
 

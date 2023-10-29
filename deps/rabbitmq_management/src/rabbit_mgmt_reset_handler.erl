@@ -12,7 +12,7 @@
 
 -module(rabbit_mgmt_reset_handler).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -behaviour(gen_event).
 

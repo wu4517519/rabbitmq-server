@@ -9,6 +9,7 @@
 
 %% Queue collector keeps track of exclusive queues and cleans them
 %% up e.g. when their connection is closed.
+%% 队列收集器跟踪排他队列并清除它们，例如当他们的连接关闭时
 
 -behaviour(gen_server).
 

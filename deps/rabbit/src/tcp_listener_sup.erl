@@ -32,6 +32,8 @@ start_link(IPAddress, Port, Transport, SocketOpts, ProtoSup, ProtoOpts, OnStartu
       ?MODULE, {IPAddress, Port, Transport, SocketOpts, ProtoSup, ProtoOpts, OnStartup, OnShutdown,
                 ConcurrentAcceptorCount, ConcurrentConnsSups, ConnectionType, Label}).
 
+%% OnStartup 启动回调函数
+%% OnShutdown 关闭回调函数
 init({IPAddress, Port, Transport, SocketOpts, ProtoSup, ProtoOpts, OnStartup, OnShutdown,
       ConcurrentAcceptorCount, ConcurrentConnsSups, ConnectionType, Label}) ->
     {ok, AckTimeout} = application:get_env(rabbit, ssl_handshake_timeout),

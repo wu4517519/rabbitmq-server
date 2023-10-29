@@ -8,7 +8,7 @@
 -module(rabbit_mqtt_sup).
 -behaviour(supervisor).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 -include("rabbit_mqtt.hrl").
 
 -export([start_link/2, init/1, stop_listeners/0]).

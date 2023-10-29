@@ -11,7 +11,7 @@
 -include_lib("kernel/include/logger.hrl").
 -include_lib("eunit/include/eunit.hrl").
 
--include_lib("rabbit_common/include/logging.hrl").
+-include_lib("../../rabbit_common/include/logging.hrl").
 
 -export([get/0,
          set/1,

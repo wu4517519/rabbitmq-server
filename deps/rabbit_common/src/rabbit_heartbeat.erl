@@ -70,6 +70,7 @@ start(SupPid, Sock, Identity,
                           start_heartbeat_receiver, Identity),
     {Sender, Receiver}.
 
+%% SendFun 是用来发送心跳帧的匿名函数
 start_heartbeat_sender(Sock, TimeoutSec, SendFun, Identity) ->
     %% the 'div 2' is there so that we don't end up waiting for nearly
     %% 2 * TimeoutSec before sending a heartbeat in the boundary case
@@ -81,6 +82,7 @@ start_heartbeat_receiver(Sock, TimeoutSec, ReceiveFun, Identity) ->
     %% we check for incoming data every interval, and time out after
     %% two checks with no change. As a result we will time out between
     %% 2 and 3 intervals after the last data has been received.
+    %% 我们每隔一段时间检查传入数据，并在 %% 两次检查后超时，没有变化。因此，我们将在收到最后一个数据后 2 到 3 个间隔之间超时。
     heartbeater({Sock, TimeoutSec * 1000, recv_oct, 1,
                  fun () -> ReceiveFun(), stop end}, Identity).
 
@@ -111,6 +113,8 @@ start_heartbeater(TimeoutSec, SupPid, Sock, TimeoutFun, Name, Callback,
                 [Sock, TimeoutSec, TimeoutFun, {Name, Identity}]},
                transient, ?WORKER_WAIT, worker, [rabbit_heartbeat]}).
 
+%% Params
+%%  {Sock, TimeoutSec * 1000 div 2, send_oct, 0, fun () -> SendFun(), continue end}
 heartbeater(Params, Identity) ->
     Deb = sys:debug_options([]),
     {ok, proc_lib:spawn_link(fun () ->
@@ -118,6 +122,7 @@ heartbeater(Params, Identity) ->
                                      heartbeater(Params, Deb, {0, 0})
                              end)}.
 
+%% Handler = fun() -> SendFun(), continue end
 heartbeater({Sock, TimeoutMillisec, StatName, Threshold, Handler} = Params,
             Deb, {StatVal0, SameCount} = State) ->
     Recurse = fun (State1) -> heartbeater(Params, Deb, State1) end,

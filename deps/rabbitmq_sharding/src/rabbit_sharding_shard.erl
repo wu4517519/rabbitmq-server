@@ -7,7 +7,7 @@
 
 -module(rabbit_sharding_shard).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -export([maybe_shard_exchanges/0,
          ensure_sharded_queues/1,

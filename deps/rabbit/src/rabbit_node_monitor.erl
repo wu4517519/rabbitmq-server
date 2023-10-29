@@ -915,6 +915,12 @@ disconnect(Node) ->
 %% TCP connections are timing out. So that means we should be careful
 %% about whether we connect to nodes which are currently disconnected.
 
+%% mnesia:system_info(db_nodes)不返回分区时的所有节点
+%% %%，只返回与我们共享mnesia状态%%的节点。我们有一个小的替换函数集。函数名中的“rabbit”意味着我们测试rabbit
+%% 应用程序是否启动，而不仅仅是节点。当我们使用这些函数来决定在pause_minority或
+%% pause_if_all_down状态下做什么时，它们必须是快速的，即使在
+%% TCP连接超时的情况下也是如此。因此，这意味着我们应该小心是否连接到当前未连接的节点。
+
 majority() ->
     majority([]).
 

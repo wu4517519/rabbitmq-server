@@ -2,7 +2,7 @@
 -behaviour(rabbit_queue_type).
 
 -include("amqqueue.hrl").
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 %% TODO possible to use sets / maps instead of lists?
 %% Check performance with QoS 1 and 1 million target queues.

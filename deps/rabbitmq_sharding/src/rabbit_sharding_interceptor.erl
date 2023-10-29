@@ -7,7 +7,7 @@
 
 -module(rabbit_sharding_interceptor).
 
--include_lib("rabbit_common/include/rabbit_framing.hrl").
+-include_lib("rabbit_framing.hrl").
 
 -behaviour(rabbit_channel_interceptor).
 

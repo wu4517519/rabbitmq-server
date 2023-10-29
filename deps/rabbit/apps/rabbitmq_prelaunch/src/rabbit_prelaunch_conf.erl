@@ -4,8 +4,8 @@
 -include_lib("kernel/include/logger.hrl").
 -include_lib("stdlib/include/zip.hrl").
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
--include_lib("rabbit_common/include/logging.hrl").
+-include_lib("rabbit.hrl").
+-include_lib("../../rabbit_common/include/logging.hrl").
 
 -export([setup/1,
          get_config_state/0,
@@ -107,6 +107,7 @@ set_default_config() ->
     Config = [
               {ra,
                [
+                   %% 用于设置磁盘上写入操作日志（Write-Ahead Log，WAL）文件的最大大小
                 {wal_max_size_bytes, 536870912}, %% 5 * 2 ^ 20
                 {wal_max_batch_size, 4096}
                ]},

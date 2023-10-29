@@ -33,7 +33,7 @@
          emit_publisher_info_local/4,
          list/1]).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 -include_lib("rabbitmq_stream_common/include/rabbit_stream.hrl").
 
 -include("rabbit_stream_metrics.hrl").

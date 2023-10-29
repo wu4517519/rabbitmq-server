@@ -8,7 +8,7 @@
 -module(http_SUITE).
 
 -include_lib("common_test/include/ct.hrl").
--include_lib("rabbit_common/include/rabbit_framing.hrl").
+-include_lib("rabbit_framing.hrl").
 -include_lib("rabbitmq_ct_helpers/include/rabbit_mgmt_test.hrl").
 
 -compile(export_all).

@@ -6,7 +6,7 @@
 %%
 
 -module(rabbit_auth_mechanism_cr_demo).
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -behaviour(rabbit_auth_mechanism).
 

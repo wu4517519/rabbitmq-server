@@ -9,7 +9,7 @@
 
 -include_lib("kernel/include/logger.hrl").
 
--include_lib("rabbit_common/include/logging.hrl").
+-include_lib("../../rabbit_common/include/logging.hrl").
 
 -export([names/1, diagnostics/1, make/1, make/2, parts/1, cookie_hash/0,
          is_running/2, is_process_running/2,
@@ -36,7 +36,7 @@
 -deprecated({all_running, 0, "Use rabbit_nodes:list_running/0 instead"}).
 
 -include_lib("kernel/include/inet.hrl").
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -define(SAMPLING_INTERVAL, 1000).
 -define(FILTER_RPC_TIMEOUT, 10000).

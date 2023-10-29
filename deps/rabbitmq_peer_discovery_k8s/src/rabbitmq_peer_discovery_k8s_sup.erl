@@ -11,7 +11,7 @@
 
 -export([init/1, start_link/0]).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 -include("rabbit_peer_discovery_k8s.hrl").
 
 %%

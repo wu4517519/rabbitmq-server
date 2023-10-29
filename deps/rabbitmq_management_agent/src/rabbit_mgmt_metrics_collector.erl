@@ -6,8 +6,8 @@
 %%
 -module(rabbit_mgmt_metrics_collector).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
--include_lib("rabbit_common/include/rabbit_core_metrics.hrl").
+-include_lib("rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit_core_metrics.hrl").
 -include("rabbit_mgmt_metrics.hrl").
 
 -behaviour(gen_server).

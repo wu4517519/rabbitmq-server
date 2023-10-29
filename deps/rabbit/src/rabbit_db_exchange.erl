@@ -7,7 +7,7 @@
 
 -module(rabbit_db_exchange).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -export([
          get_all/0,

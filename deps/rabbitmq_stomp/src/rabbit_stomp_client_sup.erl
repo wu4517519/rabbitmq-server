@@ -9,7 +9,7 @@
 -behaviour(supervisor).
 -behaviour(ranch_protocol).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -export([start_link/3, init/1]).
 

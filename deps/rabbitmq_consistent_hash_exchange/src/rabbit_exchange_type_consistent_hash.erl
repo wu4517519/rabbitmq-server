@@ -6,8 +6,8 @@
 %%
 
 -module(rabbit_exchange_type_consistent_hash).
--include_lib("../../rabbit_common/include/rabbit.hrl").
--include_lib("rabbit_common/include/rabbit_framing.hrl").
+-include_lib("rabbit.hrl").
+-include_lib("rabbit_framing.hrl").
 
 -include("rabbitmq_consistent_hash_exchange.hrl").
 

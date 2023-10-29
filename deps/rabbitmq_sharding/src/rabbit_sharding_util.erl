@@ -11,7 +11,7 @@
 -export([get_policy/2, shards_per_node/1, routing_key/1]).
 -export([exchange_bin/1, make_queue_name/3, a2b/1]).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -import(rabbit_misc, [pget/3]).
 

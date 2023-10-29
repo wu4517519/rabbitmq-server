@@ -39,7 +39,7 @@
           port,
           %% client port
           peer_port,
-          %% protocol implementation module,
+          %% protocol implementation module, 协议实现模块
           %% e.g. rabbit_framing_amqp_0_9_1
           protocol,
           user,

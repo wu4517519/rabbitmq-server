@@ -9,7 +9,7 @@
 
 -include_lib("kernel/include/logger.hrl").
 
--include_lib("rabbit_common/include/logging.hrl").
+-include_lib("../../rabbit_common/include/logging.hrl").
 
 -export([setup_early_logging/1,
          default_formatter/1,
@@ -125,6 +125,7 @@ main_handler_config(Context) ->
     #{filter_default => log,
       formatter => default_formatter(Context)}.
 
+%% 默认格式化器，用于日志内容格式化
 default_formatter(#{log_levels := #{json := true}} = Context) ->
     SingleLine = format_msgs_as_single_lines(Context),
     {rabbit_logger_json_fmt, #{single_line => SingleLine}};

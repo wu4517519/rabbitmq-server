@@ -3,7 +3,7 @@
 -include_lib("eunit/include/eunit.hrl").
 -include_lib("kernel/include/logger.hrl").
 
--include_lib("rabbit_common/include/logging.hrl").
+-include_lib("../../rabbit_common/include/logging.hrl").
 
 -export([setup/1]).
 
@@ -48,6 +48,7 @@ do_setup(#{nodename := Node,
             %% "minimum transition traffic interval" as defined in
             %% net_kernel:set_net_ticktime/1.
             MTTI = Ticktime * 1000 div 4,
+            %% 根据配置信息，启动结点
             {ok, _} = net_kernel:start([Node, NameType, MTTI]),
             ok;
         _ ->
@@ -134,6 +135,7 @@ dist_port_use_check_fail(Port, Host) ->
             throw({error, {dist_port_already_used, Port, Name, Host}})
     end.
 
+%% 设置混淆密钥
 set_credentials_obfuscation_secret() ->
     ?LOG_DEBUG(
         "Refreshing credentials obfuscation configuration from env: ~tp",

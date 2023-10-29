@@ -1064,6 +1064,8 @@ otp_release() ->
     case raw_read_file(File) of
         {ok, VerBin} ->
             %% 17.0 or later, we need the file for the minor version
+            %% OTP 17.0 后的版本需要读取文件来获得次要版本
+            %% 删除左右两侧回车符
             string:strip(binary_to_list(VerBin), both, $\n);
         {error, _} ->
             %% R16B03 or earlier (no file, otp_release is correct)

@@ -7,7 +7,7 @@
 
 -module(rabbit_db_rtparams).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -export([set/2, set/4,
          get/1,

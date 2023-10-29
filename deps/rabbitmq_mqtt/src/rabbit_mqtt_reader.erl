@@ -11,7 +11,7 @@
 -behaviour(ranch_protocol).
 
 -include_lib("kernel/include/logger.hrl").
--include_lib("rabbit_common/include/logging.hrl").
+-include_lib("../../rabbit_common/include/logging.hrl").
 
 -export([start_link/3]).
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2,

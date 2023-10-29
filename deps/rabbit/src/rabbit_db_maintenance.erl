@@ -7,7 +7,7 @@
 
 -module(rabbit_db_maintenance).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -export([
          setup_schema/0,

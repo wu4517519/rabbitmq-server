@@ -9,9 +9,9 @@
 
 -include_lib("kernel/include/logger.hrl").
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
--include_lib("rabbit_common/include/rabbit_framing.hrl").
--include_lib("rabbit_common/include/logging.hrl").
+-include_lib("rabbit.hrl").
+-include_lib("rabbit_framing.hrl").
+-include_lib("../../rabbit_common/include/logging.hrl").
 
 %% logger callbacks
 -export([log/2, adding_handler/1, removing_handler/1, changing_config/3,

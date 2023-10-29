@@ -9,7 +9,7 @@
 
 -behaviour(mirrored_supervisor).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 -define(SUPERVISOR, ?MODULE).
 
 %% Supervises the upstream links for all exchanges (but not queues). We need

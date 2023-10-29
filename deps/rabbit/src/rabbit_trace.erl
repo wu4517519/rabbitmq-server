@@ -10,8 +10,8 @@
 -export([init/1, enabled/1, tap_in/5, tap_in/6,
          tap_out/4, tap_out/5, start/1, stop/1]).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
--include_lib("rabbit_common/include/rabbit_framing.hrl").
+-include_lib("rabbit.hrl").
+-include_lib("rabbit_framing.hrl").
 
 -define(TRACE_VHOSTS, trace_vhosts).
 -define(XNAME, <<"amq.rabbitmq.trace">>).

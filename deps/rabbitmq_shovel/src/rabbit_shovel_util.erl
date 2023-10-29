@@ -13,7 +13,7 @@
          restart_shovel/2,
          get_shovel_parameter/1]).
 
--include_lib("rabbit_common/include/rabbit_framing.hrl").
+-include_lib("rabbit_framing.hrl").
 
 -define(ROUTING_HEADER, <<"x-shovelled">>).
 -define(TIMESTAMP_HEADER, <<"x-shovelled-timestamp">>).

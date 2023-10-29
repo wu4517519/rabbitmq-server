@@ -15,7 +15,7 @@
          delete_bindings/2
         ]).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 -include("rabbitmq_consistent_hash_exchange.hrl").
 
 -define(HASH_RING_STATE_TABLE, rabbit_exchange_type_consistent_hash_ring_state).

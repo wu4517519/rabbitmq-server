@@ -17,7 +17,7 @@
 -module(rabbit_stream_SUITE).
 
 -include_lib("eunit/include/eunit.hrl").
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 -include_lib("rabbitmq_ct_helpers/include/rabbit_assert.hrl").
 -include_lib("rabbitmq_stream_common/include/rabbit_stream.hrl").
 

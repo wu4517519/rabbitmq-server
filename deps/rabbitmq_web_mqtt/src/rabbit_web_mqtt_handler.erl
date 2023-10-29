@@ -10,7 +10,7 @@
 -behaviour(cowboy_sub_protocol).
 
 -include_lib("kernel/include/logger.hrl").
--include_lib("rabbit_common/include/logging.hrl").
+-include_lib("../../rabbit_common/include/logging.hrl").
 -include_lib("rabbitmq_mqtt/include/rabbit_mqtt.hrl").
 -include_lib("rabbitmq_mqtt/include/rabbit_mqtt_packet.hrl").
 

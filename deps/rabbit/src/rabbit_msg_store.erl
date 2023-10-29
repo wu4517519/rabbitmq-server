@@ -24,7 +24,7 @@
 
 %%----------------------------------------------------------------------------
 
--include_lib("rabbit_common/include/rabbit_msg_store.hrl").
+-include_lib("../../rabbit_common/include/rabbit_msg_store.hrl").
 
 %% We flush to disk when the write buffer gets above the max size,
 %% or at an interval to make sure we don't keep the data in memory

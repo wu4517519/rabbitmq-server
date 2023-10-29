@@ -29,7 +29,7 @@
 -include_lib("kernel/include/logger.hrl").
 -include_lib("stdlib/include/assert.hrl").
 
--include_lib("rabbit_common/include/logging.hrl").
+-include_lib("../../rabbit_common/include/logging.hrl").
 
 -include("src/rabbit_feature_flags.hrl").
 
@@ -174,6 +174,7 @@ callback_mode() ->
 init(_Args) ->
     {ok, standing_by, none}.
 
+%% 初始状态-等待
 standing_by(
   {call, From} = EventType, EventContent, none)
   when EventContent =/= notify_when_done ->

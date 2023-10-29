@@ -9,7 +9,7 @@
 
 -behaviour(gen_event).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -export([register/4]).
 -export([init/1, handle_call/2, handle_event/2, handle_info/2,

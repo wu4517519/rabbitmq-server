@@ -22,7 +22,7 @@
 
 -include_lib("kernel/include/logger.hrl").
 
--include_lib("rabbit_common/include/logging.hrl").
+-include_lib("../../rabbit_common/include/logging.hrl").
 
 -export([get/1,
          list/1,

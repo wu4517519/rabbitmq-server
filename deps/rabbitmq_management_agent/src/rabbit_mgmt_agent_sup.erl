@@ -9,8 +9,8 @@
 
 -behaviour(supervisor).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
--include_lib("rabbit_common/include/rabbit_core_metrics.hrl").
+-include_lib("rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit_core_metrics.hrl").
 -include("rabbit_mgmt_metrics.hrl").
 -include("rabbit_mgmt_agent.hrl").
 

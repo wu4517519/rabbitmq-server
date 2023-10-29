@@ -6,7 +6,7 @@
 %%
 
 -module(rabbit_plugins).
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 -include_lib("stdlib/include/zip.hrl").
 
 -export([setup/0, active/0, read_enabled/1, list/1, list/2, dependencies/3, running_plugins/0]).

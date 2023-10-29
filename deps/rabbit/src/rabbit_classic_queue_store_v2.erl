@@ -60,7 +60,7 @@
 -define(HEADER_SIZE,       64). %% bytes
 -define(ENTRY_HEADER_SIZE,  8). %% bytes
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 %% Set to true to get an awful lot of debug logs.
 -if(false).

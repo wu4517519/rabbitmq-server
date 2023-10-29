@@ -9,7 +9,7 @@
 
 -include_lib("stdlib/include/assert.hrl").
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -export([create/1,
          update/2,

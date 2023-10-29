@@ -7,7 +7,7 @@
 
 -module(rabbit_mgmt_db_handler).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 %% Make sure our database is hooked in *before* listening on the network or
 %% recovering queues (i.e. so there can't be any events fired before it starts).

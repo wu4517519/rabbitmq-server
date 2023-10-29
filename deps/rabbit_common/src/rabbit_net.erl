@@ -82,6 +82,7 @@
 
 -define(SSL_CLOSE_TIMEOUT, 5000).
 
+%% {sslsocket, {gen_tcp, TCPSocket, _, _}, _} = Socket
 -define(IS_SSL(Sock), is_tuple(Sock)
     andalso (tuple_size(Sock) =:= 3)
     andalso (element(1, Sock) =:= sslsocket)).
@@ -119,6 +120,7 @@ controlling_process(Sock, Pid) when ?IS_SSL(Sock) ->
 controlling_process(Sock, Pid) when is_port(Sock) ->
     gen_tcp:controlling_process(Sock, Pid).
 
+%% 获取 socket 统计信息
 getstat(Sock, Stats) when ?IS_SSL(Sock) ->
     inet:getstat(ssl_get_socket(Sock), Stats);
 getstat(Sock, Stats) when is_port(Sock) ->

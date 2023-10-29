@@ -36,7 +36,7 @@
 
 -define(MAX_PERMISSION_CACHE_SIZE, 12).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 -include_lib("rabbitmq_stream_common/include/rabbit_stream.hrl").
 
 enforce_correct_name(Name) ->

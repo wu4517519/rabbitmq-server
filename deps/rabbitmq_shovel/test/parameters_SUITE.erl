@@ -10,7 +10,7 @@
 -compile(export_all).
 
 -include_lib("eunit/include/eunit.hrl").
--include_lib("rabbit_common/include/rabbit_framing.hrl").
+-include_lib("rabbit_framing.hrl").
 
 -define(EXCHANGE,    <<"test_exchange">>).
 -define(TO_SHOVEL,   <<"to_the_shovel">>).

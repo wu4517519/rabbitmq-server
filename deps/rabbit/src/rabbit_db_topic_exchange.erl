@@ -7,7 +7,7 @@
 
 -module(rabbit_db_topic_exchange).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -export([set/1, delete_all_for_exchange/1, delete/1, match/3]).
 

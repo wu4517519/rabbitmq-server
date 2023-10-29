@@ -14,7 +14,7 @@
 -export([feature_flags/0]).
 
 -include_lib("rabbitmq_management_agent/include/rabbit_mgmt_records.hrl").
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 %%--------------------------------------------------------------------
 

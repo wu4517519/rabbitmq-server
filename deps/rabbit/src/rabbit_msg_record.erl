@@ -12,7 +12,7 @@
          to_091/2
          ]).
 
--include_lib("rabbit_common/include/rabbit_framing.hrl").
+-include_lib("rabbit_framing.hrl").
 -include_lib("amqp10_common/include/amqp10_framing.hrl").
 
 -type maybe(T) :: T | undefined.

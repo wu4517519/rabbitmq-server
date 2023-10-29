@@ -12,8 +12,8 @@
 
 -export([intercept/1]).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
--include_lib("rabbit_common/include/rabbit_framing.hrl").
+-include_lib("rabbit.hrl").
+-include_lib("rabbit_framing.hrl").
 
 -define(HEADER_TIMESTAMP, <<"timestamp_in_ms">>).
 -define(HEADER_ROUTING_NODE, <<"x-routed-by">>).

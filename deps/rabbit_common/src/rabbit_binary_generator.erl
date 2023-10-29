@@ -49,6 +49,7 @@
 build_simple_method_frame(ChannelInt, MethodRecord, Protocol) ->
     MethodFields = Protocol:encode_method_fields(MethodRecord),
     MethodName = rabbit_misc:method_record_type(MethodRecord),
+    %% 通过代码生成获得配置的类和方法
     {ClassId, MethodId} = Protocol:method_id(MethodName),
     create_frame(1, ChannelInt, [<<ClassId:16, MethodId:16>>, MethodFields]).
 

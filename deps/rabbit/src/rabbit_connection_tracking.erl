@@ -40,7 +40,7 @@
 -export([count_local_tracked_items_in_vhost/1,
          count_local_tracked_items_of_user/1]).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -import(rabbit_misc, [pget/2]).
 

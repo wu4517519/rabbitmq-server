@@ -7,7 +7,7 @@
 
 -module('Elixir.RabbitMQ.CLI.Diagnostics.Commands.ConsistentHashExchangeRingStateCommand').
 
--include_lib("rabbit_common/include/resource.hrl").
+-include_lib("../../rabbit_common/include/resource.hrl").
 -include("rabbitmq_consistent_hash_exchange.hrl").
 
 -behaviour('Elixir.RabbitMQ.CLI.CommandBehaviour').

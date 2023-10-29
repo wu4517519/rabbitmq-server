@@ -14,8 +14,8 @@
 -export([setup_wm_logging/0]).
 
 -include_lib("rabbitmq_management_agent/include/rabbit_mgmt_metrics.hrl").
--include_lib("../../rabbit_common/include/rabbit.hrl").
--include_lib("rabbit_common/include/rabbit_core_metrics.hrl").
+-include_lib("rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit_core_metrics.hrl").
 
 init([]) ->
     DB = {rabbit_mgmt_db, {rabbit_mgmt_db, start_link, []},

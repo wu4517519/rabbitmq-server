@@ -9,7 +9,7 @@
 
 -include_lib("kernel/include/logger.hrl").
 
--include_lib("rabbit_common/include/logging.hrl").
+-include_lib("../../rabbit_common/include/logging.hrl").
 
 -export([ensure_feature_flags_are_in_sync/2,
          join/2,

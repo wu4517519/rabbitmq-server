@@ -8,7 +8,7 @@
 -module(rabbit_mgmt_test_db_SUITE).
 
 -include_lib("common_test/include/ct.hrl").
--include_lib("rabbit_common/include/rabbit_core_metrics.hrl").
+-include_lib("../../rabbit_common/include/rabbit_core_metrics.hrl").
 -include_lib("rabbitmq_management_agent/include/rabbit_mgmt_records.hrl").
 -include_lib("rabbitmq_management_agent/include/rabbit_mgmt_metrics.hrl").
 -include("rabbit_mgmt.hrl").

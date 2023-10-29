@@ -18,7 +18,7 @@
 
 -behaviour(gen_server).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 -include_lib("rabbit/include/amqqueue.hrl").
 
 %% API

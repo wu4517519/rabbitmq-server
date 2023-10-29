@@ -11,10 +11,12 @@ from __future__ import nested_scopes
 from __future__ import print_function
 
 import sys
-
+sys.path.append('D:\\Project\\Erlang\\rabbitmq-server\\deps\\rabbitmq_codegen')
+# print("sys path==", sys.path)
 from amqp_codegen import *
 import string
 import re
+
 
 # Coming up with a proper encoding of AMQP tables in JSON is too much
 # hassle at this stage. Given that the only default value we are

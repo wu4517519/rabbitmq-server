@@ -10,7 +10,7 @@
 %% Connect to an LDAP server for authentication and authorisation
 
 -include_lib("eldap/include/eldap.hrl").
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -behaviour(rabbit_authn_backend).
 -behaviour(rabbit_authz_backend).

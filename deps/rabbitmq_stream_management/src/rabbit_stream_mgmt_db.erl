@@ -11,7 +11,7 @@
 -define(ENTITY_PUBLISHER, publisher).
 
 -include_lib("rabbitmq_stream/include/rabbit_stream_metrics.hrl").
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -export([get_all_consumers/1,
          get_all_publishers/1]).

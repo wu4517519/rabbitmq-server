@@ -32,8 +32,8 @@
 -import(rabbit_misc, [pget/2, pget/3, pset/3]).
 -import(rabbit_data_coercion, [to_binary/1]).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
--include_lib("rabbit_common/include/rabbit_framing.hrl").
+-include_lib("rabbit.hrl").
+-include_lib("rabbit_framing.hrl").
 -include_lib("rabbit/include/amqqueue.hrl").
 
 %%--------------------------------------------------------------------

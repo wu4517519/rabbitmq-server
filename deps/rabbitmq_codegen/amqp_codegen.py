@@ -1,3 +1,5 @@
+# coding=utf-8
+
 ## This Source Code Form is subject to the terms of the Mozilla Public
 ## License, v. 2.0. If a copy of the MPL was not distributed with this
 ## file, You can obtain one at https://mozilla.org/MPL/2.0/.
@@ -162,6 +164,7 @@ class AmqpSpec:
 
 class AmqpEntity:
     def __init__(self, element):
+        # 隐士定义两个属性
         self.element = element
         self.name = element['name']
 
@@ -194,6 +197,7 @@ class AmqpClass(AmqpEntity):
     def __repr__(self):
         return 'AmqpClass("' + self.name + '")'
 
+# 继承自AmqpEntity
 class AmqpMethod(AmqpEntity):
     def __init__(self, klass, element):
         AmqpEntity.__init__(self, element)

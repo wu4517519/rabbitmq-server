@@ -15,9 +15,9 @@ defmodule RabbitCommon.Records do
   # Important: amqqueue records must not be used directly since they are versioned
   #            for mixed version cluster compatibility. Convert records
   #            to maps on the server end to access the fields of those records. MK.
-  defrecord :listener, extract(:listener, from_lib: "../../rabbit_common/include/rabbit.hrl")
-  defrecord :plugin, extract(:plugin, from_lib: "../../rabbit_common/include/rabbit.hrl")
-  defrecord :resource, extract(:resource, from_lib: "../../rabbit_common/include/rabbit.hrl")
+  defrecord :listener, extract(:listener, from_lib: "rabbit.hrl")
+  defrecord :plugin, extract(:plugin, from_lib: "rabbit.hrl")
+  defrecord :resource, extract(:resource, from_lib: "rabbit.hrl")
 
   defrecord :hostent, extract(:hostent, from_lib: "kernel/include/inet.hrl")
 end

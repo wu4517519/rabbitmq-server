@@ -54,8 +54,8 @@
     connections_local/0
 ]).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
--include_lib("rabbit_common/include/rabbit_misc.hrl").
+-include_lib("rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit_misc.hrl").
 
 %% IANA-suggested ephemeral port range is 49152 to 65535
 -define(FIRST_TEST_BIND_PORT, 49152).
@@ -209,6 +209,7 @@ tcp_listener_spec(NamePrefix, Address, SocketOpts, Transport, ProtoSup, ProtoOpt
 tcp_listener_spec(NamePrefix, Address, SocketOpts,
                   Transport, ProtoSup, ProtoOpts, Protocol, NumAcceptors,
                   ConcurrentConnsSupsCount, Label) ->
+  %% ProtoSup = rabbit_connection_sup
     tcp_listener_spec(NamePrefix, Address, SocketOpts, Transport, ProtoSup, ProtoOpts,
                       Protocol, NumAcceptors, ConcurrentConnsSupsCount, supervisor, Label).
 
@@ -221,7 +222,9 @@ tcp_listener_spec(NamePrefix, {IPAddress, Port, Family}, SocketOpts,
                   Transport, ProtoHandler, ProtoOpts, Protocol, NumAcceptors,
                   ConcurrentConnsSupsCount, ConnectionType, Label) ->
     Args = [IPAddress, Port, Transport, [Family | SocketOpts], ProtoHandler, ProtoOpts,
+            %% OnStartup
             {?MODULE, tcp_listener_started, [Protocol, SocketOpts]},
+            %% OnShutdown
             {?MODULE, tcp_listener_stopped, [Protocol, SocketOpts]},
             NumAcceptors, ConcurrentConnsSupsCount, ConnectionType, Label],
     {rabbit_misc:tcp_name(NamePrefix, IPAddress, Port),
@@ -723,6 +726,7 @@ port_to_listeners(Port) ->
         ipv4_only    -> [IPv4]
     end.
 
+%% 检测主机所支持的协议栈
 ipv6_status(TestPort) ->
     IPv4 = [inet,  {ip, {0,0,0,0}}],
     IPv6 = [inet6, {ip, {0,0,0,0,0,0,0,0}}],

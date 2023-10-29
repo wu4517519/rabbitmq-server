@@ -3,7 +3,7 @@
 -include_lib("kernel/include/logger.hrl").
 -include_lib("eunit/include/eunit.hrl").
 
--include_lib("rabbit_common/include/logging.hrl").
+-include_lib("../../rabbit_common/include/logging.hrl").
 
 -export([run_prelaunch_first_phase/0,
          assert_mnesia_is_stopped/0,

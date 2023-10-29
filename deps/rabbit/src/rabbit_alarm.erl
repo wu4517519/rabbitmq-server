@@ -14,6 +14,16 @@
 %% * limits local to this node (file_descriptor_limit). Used for information
 %%   purposes only: logging and getting node status. This information is not propagated
 %%   throughout the cluster. `#alarms.alarms' is being used to track this type of alarms.
+
+%% *整个集群的每节点资源(磁盘、内存)告警。如果任何节点有告警，那么应该在整个集群中禁用所有发布，直到所有告警都被清除。
+%% 当一个节点设置此类告警时，该信息将自动在整个集群中传播。
+%% “#alarms.alarmed_nodes” 用于跟踪此类告警。
+%% *限制本地到这个节点(file_descriptor_limit)。仅用于信息目的:记录和获取节点状态。此信息不会在整个集群中传播。
+%% #alarms.alarms 正在被用来跟踪这类警报。
+
+
+%%
+
 %% @end
 
 -module(rabbit_alarm).
@@ -64,6 +74,7 @@ start_link() ->
 
 start() ->
     ok = rabbit_sup:start_restartable_child(?MODULE),
+    %%
     ok = gen_event:add_handler(?SERVER, ?MODULE, []),
     {ok, MemoryWatermark} = application:get_env(vm_memory_high_watermark),
 
@@ -87,6 +98,11 @@ stop() -> ok.
 %% Given a call rabbit_alarm:register(Pid, {M, F, A}), the handler would be
 %% called like this: `apply(M, F, A ++ [Pid, Source, Alert])', where `Source'
 %% has the type of resource_alarm_source() and `Alert' has the type of resource_alert().
+
+%% 注册一个应在每次资源警报更改时调用的处理程序。给定一个调用rabbit_alarm:register(Pid， {M, F, a})，处理程序将被
+%% 像这样调用:' apply(M, F, a++ [Pid, Source, Alert])'，
+%% 其中' Source' 的类型是resource_alarm_source()， ' Alert'的类型是resource_alert()。
+
 
 -spec register(pid(), rabbit_types:mfargs()) -> [atom()].
 

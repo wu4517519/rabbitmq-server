@@ -9,8 +9,8 @@
 
 -behaviour(gen_event).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
--include_lib("rabbit_common/include/rabbit_framing.hrl").
+-include_lib("rabbit.hrl").
+-include_lib("rabbit_framing.hrl").
 -include("rabbit_event_exchange.hrl").
 
 -export([register/0, unregister/0]).

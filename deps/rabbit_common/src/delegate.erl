@@ -58,6 +58,7 @@
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2,
          terminate/2, code_change/3]).
 
+%% monitors 是 dict， dict {key:被监控进程pid，值:gb_sets 监控者集合}
 -record(state, {node, monitors, name}).
 
 %%----------------------------------------------------------------------------
@@ -114,6 +115,7 @@ invoke(Pid, Name, FunOrMFA) when is_pid(Pid) ->
             erlang:raise(Class, Reason, StackTrace)
     end;
 
+%% 多个pid
 invoke([], _Name, _FunOrMFA) -> %% optimisation
     {[], []};
 invoke([Pid], ?DEFAULT_NAME, FunOrMFA = {gen_server2, _F, _A}) when is_pid(Pid) -> %% optimisation
@@ -178,6 +180,10 @@ invoke_no_result(Pid, FunOrMFA) when is_pid(Pid) andalso node(Pid) =:= node() ->
     %%
     %% See https://github.com/rabbitmq/rabbitmq-common/issues/208#issuecomment-311308583 for a before/after
     %% comparison.
+    %% 优化，避免调用invoke_no_result3。
+    %% 乍一看，这似乎是一个表面的更改，但实际上，当 acknack 发送到托管镜像的节点时，它大大减少了镜像队列中的内存使用量。
+    %% 这样，二进制引用就不会不必要地保留。
+    %% 请参阅 https://github.com/rabbitmq/rabbitmq-common/issues/208#issuecomment-311308583 进行之前之后的比较。
     _ = safe_invoke(Pid, FunOrMFA), %% we don't care about any error
     ok;
 invoke_no_result(Pid, FunOrMFA) when is_pid(Pid) ->
@@ -213,13 +219,14 @@ invoke_no_result(Pids, FunOrMFA, LocalCallPids, Grouped) when is_list(Pids) ->
     ok.
 
 %%----------------------------------------------------------------------------
-
+%% 根据本地和远程节点划分进程
 group_pids_by_node(Pids) ->
     LocalNode = node(),
     lists:foldl(
       fun (Pid, {Local, Remote}) when node(Pid) =:= LocalNode ->
               {[Pid | Local], Remote};
           (Pid, {Local, Remote}) ->
+              %% 若是远程节点的进程，则将其记录到 Remote 的列表中
               {Local,
                maps:update_with(
                  node(Pid), fun (List) -> [Pid | List] end, [Pid], Remote)}
@@ -234,6 +241,7 @@ group_local_call_pids_by_node(Pids) ->
             %% If the value is a list of more than one pid, 
             %% the (K,V) will be put into the new map which will be called 
             %% through delegate to reduce inter-node communication.
+            %% 如果该值是多个 pid 的列表，则 %% （K，V） 将被放入新映射中，该映射将通过委托调用 %%，以减少节点间通信。
             _ -> {AccIn, maps:update_with(K, fun(V1) -> V1 end, V, MapsIn)}
         end
     end, {LocalPids0, maps:new()}, Grouped0).
@@ -241,6 +249,9 @@ group_local_call_pids_by_node(Pids) ->
 delegate_name(Name, Hash) ->
     list_to_atom(Name ++ integer_to_list(Hash)).
 
+
+%% 获取代理名称
+%% 代理名称与前缀名和远程节点名有关
 delegate(Pid, Prefix, RemoteNodes) ->
     case get(delegate) of
         undefined -> Name = delegate_name(Prefix,
@@ -280,6 +291,7 @@ handle_cast({monitor, MonitoringPid, Pid},
                         Pids1 = gb_sets:add_element(MonitoringPid, Pids),
                         dict:store(Pid, {Ref, Pids1}, Monitors);
                     error ->
+                        %% 该进程首次被监控
                         Ref = erlang:monitor(process, Pid),
                         Pids = gb_sets:singleton(MonitoringPid),
                         dict:store(Pid, {Ref, Pids}, Monitors)
@@ -291,6 +303,7 @@ handle_cast({demonitor, MonitoringPid, Pid},
     Monitors1 = case dict:find(Pid, Monitors) of
                     {ok, {Ref, Pids}} ->
                         Pids1 = gb_sets:del_element(MonitoringPid, Pids),
+                        %% 没有任何进程监控 Pid 了，本代理取消监控
                         case gb_sets:is_empty(Pids1) of
                             true  -> erlang:demonitor(Ref),
                                      dict:erase(Pid, Monitors);

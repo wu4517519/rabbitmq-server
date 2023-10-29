@@ -64,6 +64,7 @@ start_link(IPAddress, Port,
 %%--------------------------------------------------------------------
 
 init({IPAddress, Port, {M, F, A}, OnShutdown, Label}) ->
+    %% {M, F, A} = OnStartup
     process_flag(trap_exit, true),
     logger:info("started ~ts on ~ts:~tp", [Label, rabbit_misc:ntoab(IPAddress), Port]),
     apply(M, F, A ++ [IPAddress, Port]),

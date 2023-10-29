@@ -52,6 +52,7 @@ start_rabbitmq_server() {
             test -f "$SASL_BOOT_FILE.boot"
             RABBITMQ_START_RABBIT="$RABBITMQ_START_RABBIT -init_debug"
         else
+            ## 注意，这里设置的启动模块的函数为 boot
             RABBITMQ_START_RABBIT="$RABBITMQ_START_RABBIT -s $RABBITMQ_BOOT_MODULE boot"
         fi
     fi

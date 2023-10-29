@@ -14,7 +14,7 @@
 
 -include_lib("public_key/include/public_key.hrl").
 -include_lib("rabbitmq_management_agent/include/rabbit_mgmt_records.hrl").
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -define(DAYS_SECONDS, 86400).
 -define(WEEKS_SECONDS, ?DAYS_SECONDS * 7).

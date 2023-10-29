@@ -93,6 +93,7 @@ peer_cert_issuer(Cert) ->
     rabbit_cert_info:issuer(Cert).
 
 %% Return a string describing the certificate's subject, as per RFC4514.
+%% 根据RFC4514，返回一个描述证书主题的字符串。
 peer_cert_subject(Cert) ->
     rabbit_cert_info:subject(Cert).
 

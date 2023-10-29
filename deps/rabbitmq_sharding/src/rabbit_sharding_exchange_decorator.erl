@@ -7,7 +7,7 @@
 
 -module(rabbit_sharding_exchange_decorator).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -rabbit_boot_step({?MODULE,
                    [{description, "sharding exchange decorator"},

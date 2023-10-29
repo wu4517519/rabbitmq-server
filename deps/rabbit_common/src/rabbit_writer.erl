@@ -321,7 +321,7 @@ call(Pid, Msg) ->
     Res.
 
 %%---------------------------------------------------------------------------
-
+%% 将通道和调用的方法以及协议封装成帧
 assemble_frame(Channel, MethodRecord, Protocol) ->
     rabbit_binary_generator:build_simple_method_frame(
       Channel, MethodRecord, Protocol).

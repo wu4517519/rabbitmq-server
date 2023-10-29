@@ -36,9 +36,9 @@
 %% When a queue is declared as exclusive on a channel, the channel
 %% will notify queue collector of that queue.
 
--include_lib("rabbit_common/include/rabbit_framing.hrl").
--include_lib("../../rabbit_common/include/rabbit.hrl").
--include_lib("rabbit_common/include/rabbit_misc.hrl").
+-include_lib("rabbit_framing.hrl").
+-include_lib("rabbit.hrl").
+-include_lib("../../rabbit_common/include/rabbit_misc.hrl").
 
 -include("amqqueue.hrl").
 

@@ -10,7 +10,7 @@
 
 -module(rabbit_vhost_sup_wrapper).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -behaviour(supervisor).
 -export([init/1]).

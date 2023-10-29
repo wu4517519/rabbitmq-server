@@ -11,8 +11,8 @@
          make_msg/5,
          detect_cycles/3]).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
--include_lib("rabbit_common/include/rabbit_framing.hrl").
+-include_lib("rabbit.hrl").
+-include_lib("rabbit_framing.hrl").
 
 %%----------------------------------------------------------------------------
 

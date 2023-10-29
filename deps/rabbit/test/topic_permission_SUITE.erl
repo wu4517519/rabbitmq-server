@@ -8,7 +8,7 @@
 -module(topic_permission_SUITE).
 
 -include_lib("common_test/include/ct.hrl").
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -compile(export_all).
 

@@ -8,7 +8,7 @@
 -module(system_SUITE).
 
 -include_lib("common_test/include/ct.hrl").
--include_lib("rabbit_common/include/rabbit_framing.hrl").
+-include_lib("rabbit_framing.hrl").
 
 -compile(nowarn_export_all).
 -compile(export_all).

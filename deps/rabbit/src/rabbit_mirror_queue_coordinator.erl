@@ -17,7 +17,7 @@
 -behaviour(gen_server2).
 -behaviour(gm).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 -include("amqqueue.hrl").
 -include("gm_specs.hrl").
 

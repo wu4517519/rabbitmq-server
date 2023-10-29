@@ -9,7 +9,7 @@
 
 -include_lib("stdlib/include/assert.hrl").
 -include_lib("kernel/include/logger.hrl").
--include_lib("rabbit_common/include/logging.hrl").
+-include_lib("../../rabbit_common/include/logging.hrl").
 
 -behaviour(application).
 
@@ -270,7 +270,7 @@
 %%---------------------------------------------------------------------------
 
 -include_lib("rabbit_common/include/rabbit_framing.hrl").
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 -define(APPS, [os_mon, mnesia, rabbit_common, rabbitmq_prelaunch, ra, sysmon_handler, rabbit, osiris]).
 
@@ -300,6 +300,7 @@ start() ->
 
 -spec boot() -> 'ok'.
 
+%% 启动入口
 boot() ->
     %% start() vs. boot(): we want the node to exit in boot(). Because
     %% applications are started with `transient`, any error during their
@@ -380,11 +381,14 @@ start_it(StartType) ->
             T0 = erlang:timestamp(),
             ?LOG_INFO("RabbitMQ is asked to start...", [],
                       #{domain => ?RMQLOG_DOMAIN_PRELAUNCH}),
+            ?LOG_EMERGENCY(),
             try
                 {ok, _} = application:ensure_all_started(rabbitmq_prelaunch,
                                                          StartType),
                 {ok, _} = application:ensure_all_started(rabbit,
                                                          StartType),
+
+                %% 这里等待rabbit start/2返回, 即执行 run_prelaunch_second_phase结束后
                 ok = wait_for_ready_or_stopped(),
 
                 T1 = erlang:timestamp(),
@@ -420,6 +424,7 @@ spawn_boot_marker() ->
     %% Compatibility with older RabbitMQ versions:
     %% We register a process doing nothing to indicate that RabbitMQ is
     %% booting. This is checked by `is_booting(Node)` on a remote node.
+%%    为兼容旧版本创建并link一个不做任何事情的进程以供远程节点检查rabbitmq状态
     Marker = spawn_link(fun() -> receive stop -> ok end end),
     case catch register(rabbit_boot, Marker) of
         true -> {ok, Marker};

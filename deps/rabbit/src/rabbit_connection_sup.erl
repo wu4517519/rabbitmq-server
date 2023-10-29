@@ -23,7 +23,7 @@
 
 -export([init/1]).
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
+-include_lib("rabbit.hrl").
 
 %%----------------------------------------------------------------------------
 
@@ -68,6 +68,7 @@ start_link(Ref, _Transport, _Opts) ->
                 modules => [rabbit_reader]
             }
         ),
+    %% 此处返回ReaderPid 用于后续处理 ranch 的socket连接
     {ok, SupPid, ReaderPid}.
 
 -spec reader(pid()) -> pid().

@@ -9,8 +9,8 @@
 
 -include_lib("kernel/include/logger.hrl").
 
--include_lib("../../rabbit_common/include/rabbit.hrl").
--include_lib("rabbit_common/include/logging.hrl").
+-include_lib("rabbit.hrl").
+-include_lib("../../rabbit_common/include/logging.hrl").
 
 -export([setup/1]).
 
@@ -47,6 +47,7 @@ do_update_enabled_plugins_file(#{enabled_plugins_file := File}, List) ->
               SortedList,
               #{domain => ?RMQLOG_DOMAIN_PRELAUNCH})
     end,
+    %% 将启用的插件名记录到插件文件中
     Content = io_lib:format("~tp.~n", [SortedList]),
     case file:write_file(File, Content) of
         ok ->
